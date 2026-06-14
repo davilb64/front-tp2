@@ -1,3 +1,6 @@
+/*
+    HTML5 Reset
+*/
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -42,3 +45,7 @@ table {
 	border-spacing: 0;
 }
 
+/* Tela de login */
+#titulo{
+    font-size: 220px;
+}
