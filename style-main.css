@@ -1,0 +1,320 @@
+/* ========== VARIÁVEIS ========== */
+:root {
+    --roxo-principal: #6b21a8;
+    --roxo-claro: #9333ea;
+    --fundo-tela: #f3f4f6;
+    --fundo-card: #ffffff;
+    --texto-escuro: #1f2937;
+    --texto-cinza: #6b7280;
+    --borda: #e5e7eb;
+    --sucesso: #10b981;
+    --alerta: #f59e0b;
+}
+
+/* ========== RESET BÁSICO ========== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Essencial para responsividade! */
+    font-family: "Ubuntu", sans-serif;
+}
+
+body {
+    background-color: var(--fundo-tela);
+    color: var(--texto-escuro);
+    line-height: 1.5;
+}
+
+/* ========== HEADER ========== */
+.header {
+    background: linear-gradient(135deg, var(--roxo-principal), var(--roxo-claro));
+    color: white;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; /* Permite quebrar linha no mobile */
+    gap: 15px;
+}
+
+.logo h1 {
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.logo p {
+    font-size: 13px;
+    color: #e9d5ff;
+}
+
+.user-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.badge-pontos {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.btn-sair {
+    color: white;
+    text-decoration: none;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    padding: 6px 16px;
+    border-radius: 6px;
+    transition: 0.3s;
+}
+
+.btn-sair:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* ========== NAVEGAÇÃO DAS ABAS (TABS) ========== */
+.nav-tabs {
+    background: var(--fundo-card);
+    border-bottom: 1px solid var(--borda);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+}
+
+.tabs-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    overflow-x: auto; /* Se não couber na tela, cria scroll horizontal invisível */
+    padding: 0 20px;
+    scrollbar-width: none; /* Firefox */
+}
+
+.tabs-container::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+}
+
+.tab {
+    background: none;
+    border: none;
+    padding: 15px 20px;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--texto-cinza);
+    cursor: pointer;
+    white-space: nowrap; /* Impede o texto da aba de quebrar em duas linhas */
+    border-bottom: 3px solid transparent;
+    transition: 0.3s;
+}
+
+.tab:hover {
+    color: var(--roxo-principal);
+}
+
+.tab.active {
+    color: var(--roxo-principal);
+    border-bottom-color: var(--roxo-principal);
+}
+
+/* ========== LAYOUT PRINCIPAL (DASHBOARD) ========== */
+.container {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+/* A MÁGICA DA RESPONSIVIDADE ACONTECE AQUI */
+.dashboard-grid {
+    display: grid;
+    /* Tenta colocar colunas de no mínimo 350px. Se não der, vira 1 coluna (mobile) */
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 25px;
+}
+
+/* ========== CARDS E CONTEÚDO ========== */
+.card {
+    background: var(--fundo-card);
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--borda);
+}
+
+.card h2 {
+    font-size: 18px;
+    color: var(--roxo-principal);
+    margin-bottom: 5px;
+}
+
+.subtitle {
+    font-size: 13px;
+    color: var(--texto-cinza);
+    margin-bottom: 20px;
+}
+
+.divisor {
+    border: 0;
+    border-top: 1px solid var(--borda);
+    margin: 25px 0;
+}
+
+/* ========== INPUTS E BOTÕES ========== */
+.input-group {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.input-padrao {
+    flex: 1; /* Ocupa todo o espaço que sobrar */
+    padding: 12px;
+    border: 1px solid var(--borda);
+    border-radius: 8px;
+    outline: none;
+    transition: 0.3s;
+}
+
+.input-padrao:focus {
+    border-color: var(--roxo-principal);
+    box-shadow: 0 0 0 3px rgba(147, 51, 234, 0.1);
+}
+
+button {
+    cursor: pointer;
+    font-weight: 500;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 20px;
+    transition: 0.3s;
+}
+
+.btn-primary {
+    background: var(--roxo-principal);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: var(--roxo-claro);
+}
+
+.btn-secondary {
+    background: var(--fundo-tela);
+    color: var(--texto-escuro);
+    border: 1px solid var(--borda);
+}
+
+.btn-secondary:hover {
+    background: #e5e7eb;
+}
+
+/* ========== ÁREAS ESPECÍFICAS ========== */
+.scanner-box {
+    background: #fffbeb; /* Fundo amarelinho bem claro */
+    border: 2px dashed var(--alerta);
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.btn-scanner {
+    background: var(--alerta);
+    color: white;
+    width: 100%;
+    margin-bottom: 8px;
+}
+
+.scanner-box span {
+    font-size: 12px;
+    color: var(--texto-cinza);
+}
+
+.lista-visual {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.item-lista {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background: var(--fundo-tela);
+    border-radius: 8px;
+    border: 1px solid var(--borda);
+}
+
+.item-lista strong { display: block; }
+.item-lista small { color: var(--texto-cinza); }
+
+.btn-icon {
+    background: rgba(16, 185, 129, 0.1);
+    color: var(--sucesso);
+    padding: 8px;
+}
+
+.total-estimado {
+    text-align: right;
+    font-size: 18px;
+    font-weight: bold;
+    padding-top: 15px;
+    border-top: 2px solid var(--fundo-tela);
+}
+
+.total-estimado span {
+    color: var(--sucesso);
+    font-size: 22px;
+}
+
+.tags-container {
+    display: flex;
+    flex-wrap: wrap; /* Empilha as tags se a tela for pequena */
+    gap: 8px;
+}
+
+.tag {
+    background: #f3e8ff;
+    color: var(--roxo-principal);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.incentivo-box {
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.incentivo-box strong { color: var(--sucesso); display: block; margin-bottom: 5px;}
+
+/* ========== RESPONSIVIDADE EXTRA ========== */
+/* Para telas muito pequenas (celulares em pé) */
+@media (max-width: 480px) {
+    .input-group {
+        flex-direction: column; /* Inputs e botões ficam um embaixo do outro */
+    }
+    
+    .btn-primary, .btn-secondary {
+        width: 100%;
+    }
+    
+    .header-content {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .dashboard-grid {
+        grid-template-columns: 1fr; /* Força 1 coluna garantida */
+    }
+}
