@@ -29,7 +29,7 @@ document.getElementById('form-cadastro').addEventListener('submit', function(eve
         if (resposta.ok) { 
             alert("Sucesso: " + mensagem);
             evento.target.reset();
-            window.location.href = "login.html";
+            window.location.href = "index.html";
         } else {
             alert("Erro: " + mensagem);
         }

@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (!usuarioLogado) {
         alert("Acesso negado. Por favor, faça login.");
-        window.location.href = 'login.html'; // Expulsa para o login
+        window.location.href = 'index.html'; // Expulsa para o login
         return;
     }
 
@@ -16,6 +16,6 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('btn-sair').addEventListener('click', function(evento) {
         evento.preventDefault();
         localStorage.removeItem('usuarioLogado');
-        window.location.href = 'login.html'; // Redireciona para o login
+        window.location.href = 'index.html'; // Redireciona para o login
     });
 });
