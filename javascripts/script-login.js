@@ -1,35 +1,28 @@
-document.getElementById('form-cadastro').addEventListener('submit', function(evento) {
+document.getElementById('meu-form-login').addEventListener('submit', function(evento) {
     evento.preventDefault(); 
 
-    const nome = document.getElementById('nome').value;
     const email = document.getElementById('email').value;
     const senha = document.getElementById('senha').value;
-    const confirmarSenha = document.getElementById('confirmarSenha').value;
 
-    if (senha !== confirmarSenha) {
-        alert("As senhas não batem!");
-        return; 
-    }
-
-    const dadosUsuario = {
-        nome: nome,
+    const dadosLogin = {
         email: email,
         senha: senha
     };
 
-    fetch('https://projeto-tecnicas-de-programacao-2.onrender.com/api/usuarios/cadastro', {
+    fetch('https://projeto-tecnicas-de-programacao-2.onrender.com/api/usuarios/login', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(dadosUsuario)
+        body: JSON.stringify(dadosLogin)
     })
     .then(async (resposta) => {
         const mensagem = await resposta.text();
+        
         if (resposta.ok) { 
-            alert("Sucesso: " + mensagem);
-            evento.target.reset();
-            window.location.href = "login.html";
+            localStorage.setItem('usuarioLogado', email);
+            
+            window.location.href = "tela-principal.html";
         } else {
             alert("Erro: " + mensagem);
         }

@@ -61,6 +61,7 @@ table {
 */
 *{
     font-family: "Ubuntu", sans-serif;
+    box-sizing: border-box; /* Garante que padding não quebre o layout */
 }
 
 body{
@@ -71,7 +72,40 @@ body{
     align-items: center;
     min-height: 100vh;
     background-color: var(--fundo-tela);
+    padding: 10px; /* Margem nas laterais para não encostar na tela */
 }
+
+
+.logo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    
+    background-color: var(--branco-caixa);
+    padding: 20px;
+    margin-bottom: 25px;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 5px;
+    
+    width: 100%;
+    max-width: 300px;
+    
+    transition: all 0.3s ease;
+}
+
+.logo img {
+    width: 60px; 
+    height: auto;
+}
+
+.logo h1 {
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--texto-escuro);
+}
+
 #form-cadastro, #form-login{
     display: flex;
     flex-direction: column;
@@ -103,7 +137,7 @@ body{
     font-weight: bold;
 }
 
-#form-cadastro:hover, #form-login:hover{
+#form-cadastro:hover, #form-login:hover, .logo:hover{
     box-shadow: rgba(51, 1, 63, 0.3) 0px 8px 12px;
 }
 
@@ -135,6 +169,7 @@ body{
     display: flex;
     flex-direction: column;
     gap: 8px;
+    width: 100%;
 }
 
 .grupo-campo label {
@@ -149,7 +184,6 @@ body{
     border: 1px solid #ccc;
     border-radius: 6px;
     font-size: 15px;
-    box-sizing: border-box;
     transition: all 0.3s ease;
 }
 
@@ -159,3 +193,26 @@ body{
     box-shadow: 0 0 0 3px rgba(155, 114, 207, 0.2);
 }
 
+/* Estilo para o link de retorno */
+a {
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--roxo-hover);
+    text-decoration: underline;
+}
+
+/* RESPONSIVIDADE PARA CELULAR 
+*/
+@media (max-width: 480px) {
+    #form-cadastro, #form-login {
+        max-width: 90%;   /* Abre para usar a tela quase toda */
+        padding: 20px;    /* Reduz o padding interno para sobrar mais espaço pros campos */
+    }
+    
+    .logo {
+        max-width: 90%;
+        padding: 15px;
+    }
+}

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SmartBuy</title>
+    <title>CarrinhoColetivo - Início</title>
     <link rel="stylesheet" href="style-main.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,92 +14,32 @@
     <header class="header">
         <div class="header-content">
             <div class="logo">
-                <h1>🛒 SmartBuy</h1>
-                <p>Gerência de compras e compartilhamento de preços</p>
+                <img src="./logos/branca sem fundo.png" alt="Logo CarrinhoColetivo">
+                <h1>CarrinhoColetivo</h1>
             </div>
             <div class="user-actions">
-                <span class="badge-pontos">⭐ 150 Pontos</span>
-                <a href="login.html" class="btn-sair">Sair</a>
+                <span class="badge-pontos" id="perfil-usuario">👤 Carregando...</span>
+                <a href="#" id="btn-sair" class="btn-sair">Sair</a>
             </div>
-        </div>
+        </div>  
     </header>
 
-    <nav class="nav-tabs">
-        <div class="tabs-container">
-            <button class="tab active">📝 Lista</button>
-            <button class="tab">🏪 Mercados (Distância/Preço)</button>
-            <button class="tab">🔍 Conferir Caixa</button>
-            <button class="tab">📊 Histórico</button>
-        </div>
-    </nav>
-
     <main class="container">
-        
-        <div class="dashboard-grid">
+        <section class="card landing-card">
+            <h2 class="landing-title">Bem-vindo(a) ao CarrinhoColetivo!</h2>
             
-            <section class="card">
-                <h2>🛍️ Lista de Compras Atual</h2>
-                <p class="subtitle">Adicione itens digitando ou via câmera.</p>
-                
-                <div class="input-group">
-                    <input type="text" placeholder="Digite o nome do produto..." class="input-padrao">
-                    <button class="btn-primary">Adicionar</button>
-                </div>
+            <p class="subtitle landing-subtitle">
+                Você está autenticado com o e-mail: <strong id="email-display" class="landing-email"></strong>
+            </p>
 
-                <div class="scanner-box">
-                    <button class="btn-scanner">📷 Simular Leitor de Código de Barras</button>
-                    <span>ou reconhecimento de imagem do produto</span>
-                </div>
+            <hr class="divisor">
 
-                <div class="lista-visual">
-                    <div class="item-lista">
-                        <div>
-                            <strong>Arroz 5kg</strong>
-                            <small>Preço esperado: R$ 22,00</small>
-                        </div>
-                        <button class="btn-icon">✔️</button>
-                    </div>
-                    <div class="item-lista">
-                        <div>
-                            <strong>Leite Integral</strong>
-                            <small>Preço esperado: R$ 4,50</small>
-                        </div>
-                        <button class="btn-icon">✔️</button>
-                    </div>
-                </div>
-
-                <div class="total-estimado">
-                    Total Esperado: <span>R$ 26,50</span>
-                </div>
-            </section>
-
-            <section class="card">
-                <h2>💡 Recomendações do Sistema</h2>
-                <p class="subtitle">Baseado em compras anteriores e outros usuários.</p>
-                
-                <div class="tags-container">
-                    <span class="tag">+ Feijão Preto</span>
-                    <span class="tag">+ Café 500g</span>
-                    <span class="tag">+ Sabão em Pó</span>
-                </div>
-
-                <hr class="divisor">
-
-                <h2>💰 Compartilhar Preço</h2>
-                <p class="subtitle">Ajude a comunidade e ganhe incentivos!</p>
-                
-                <div class="incentivo-box">
-                    <strong>Ganhe 10 pontos por informação!</strong>
-                    <p>Qual o preço do Arroz 5kg no mercado atual?</p>
-                    <div class="input-group" style="margin-top: 10px;">
-                        <input type="number" placeholder="R$ 0,00" class="input-padrao">
-                        <button class="btn-secondary">Enviar</button>
-                    </div>
-                </div>
-            </section>
-
-        </div>
+            <p class="landing-text">
+                Em Produção!
+            </p>
+        </section>
     </main>
 
+    <script src="javascripts/script-tela-principal.js"></script>
 </body>
 </html>

@@ -1,68 +1,57 @@
 <!DOCTYPE html>
-<html lang='pt-BR>
+<html lang="pt-BR">
 <head>
-    <meta charset='utf-8'>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <title>Cadastro</title>
-    <link rel='stylesheet' href='style.css'>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cadastro - CarrinhoColetivo</title>
+    <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div id = "form-cadastro">
-        <form method="POST">
+
+    <div class="logo">
+        <img src="./logos/roxa sem fundo.png" alt="Logo CarrinhoColetivo">
+        <h1>CarrinhoColetivo</h1>
+    </div>
+
+    <div id="form-cadastro">
+        <form method="POST" id="form-registro">
             <h1>Cadastro de Usuário</h1>
+            
             <div class="grupo-campo">
                 <label for="nome">Nome Completo:</label>
-                <input 
-                type="text"
-                id="nome"
-                name="nome"
-                placeholder="Digite seu nome completo"
-                required
-                >
+                <input type="text" id="nome" name="nome" placeholder="Digite seu nome completo" required>
             </div>
 
             <div class="grupo-campo"> 
                 <label for="email">E-mail:</label>
-                <input 
-                type="email"
-                id="email"
-                name="email"
-                placeholder="seu@email.com"
-                required
-                >
+                <input type="email" id="email" name="email" placeholder="seu@email.com" required>
             </div>
 
             <div class="grupo-campo">
                 <label for="senha">Senha:</label>
-                <input 
-                type="password"
-                id="senha"
-                name="senha"
-                placeholder="Crie uma senha"
-                required
-                >
+                <input type="password" id="senha" name="senha" placeholder="Crie uma senha" minlength="8" required>
+                <small style="color: #666; font-size: 12px;">Mínimo 8 caracteres.</small>
             </div>
 
             <div class="grupo-campo">
                 <label for="confirmarSenha">Confirmar Senha:</label>
-                <input 
-                type="password"
-                id="confirmarSenha"
-                name="confirmarSenha"
-                placeholder="Digite a senha novamente"
-                required
-                >
+                <input type="password" id="confirmarSenha" name="confirmarSenha" placeholder="Repita a senha" required>
             </div>
 
             <button class="cadastrar-button" type="submit">Cadastrar</button>
         </form>
     </div>
     
+    <div style="margin-top: 20px; text-align: center;">
+        <a href="login.html" style="color: var(--roxo-principal); text-decoration: none; font-size: 14px; font-weight: 500;">
+            ← Voltar para o Login
+        </a>
+    </div>
+    
     <br>
-    <a href="login.html">login</a>
+    <script src="javascripts/script-cadastro.js"></script>
 </body>
-<script src="javascripts/script-cadastro.js"></script>
 </html>

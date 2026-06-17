@@ -1,48 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Login - CarrinhoColetivo</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div class="logo">
+        <img src="./logos/roxa sem fundo.png" alt="logo CarrinhoColetivo">
+        <h1>CarrinhoColetivo</h1>
+    </div>
     <div id="form-login">
-        <form action="tela-principal.html" method="GET">
+        <form id="meu-form-login">
             <h1>Login</h1>
             <div class="grupo-campo"> 
                 <label for="email">E-mail:</label>
-                <input 
-                type="email"
-                id="email"
-                name="email"
-                placeholder="seu@email.com"
-                required
-                >
+                <input type="email" id="email" name="email" placeholder="seu@email.com" required>
             </div>
 
             <div class="grupo-campo">
                 <label for="senha">Senha:</label>
-                <input 
-                type="password"
-                id="senha"
-                name="senha"
-                placeholder="Crie uma senha"
-                required
-                >
+                <input type="password" id="senha" name="senha" placeholder="Sua senha" required>
             </div>
-            <button class="login-button">Login</button>
-            <div class="cria-conta">
-                <h2>Não tem uma conta ainda?</h2>
-                <a href="cadastro.html">Crie uma aqui!</a>
+            
+            <button class="login-button" type="submit">Entrar</button>
+            
+            <div class="cria-conta" style="text-align: center; margin-top: 15px;">
+                <p style="font-size: 14px; color: #666;">Não tem uma conta ainda?</p>
+                <a href="cadastro.html" style="font-weight: bold; color: var(--roxo-principal);">Crie uma aqui!</a>
             </div>
-
         </form>
-
     </div>
-    <a href="tela-principal.html">tela principal</a>
+
+    <script src="javascripts/script-login.js"></script>
 </body>
 </html>
