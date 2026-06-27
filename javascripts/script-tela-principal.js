@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.log(`Código lido: ${textoDecodificado}`);
                 
                 pararCamera();
-                btnIniciar.innerText = "📷 Escanear Outro Produto";
+                btnIniciar.innerText = "Escanear Outro Produto";
             },
             (erro) => { /* Ignora os quadros sem código */ }
         ).catch((err) => {
