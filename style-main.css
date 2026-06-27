@@ -172,3 +172,37 @@ body {
         padding: 30px 10px;
     }
 }
+
+/* ========== LEITOR DE CÓDIGO DE BARRAS ========== */
+.btn-customizado {
+    background-color: var(--roxo-principal);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    margin-bottom: 15px;
+    width: 100%;
+    max-width: 300px;
+}
+
+.btn-customizado:hover {
+    background-color: var(--roxo-claro);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+}
+
+.video-escondido {
+    display: none; /* Só aparece quando o leitor for ativado */
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 3px solid var(--roxo-principal);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
