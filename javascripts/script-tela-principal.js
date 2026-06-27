@@ -68,12 +68,12 @@ document.addEventListener('DOMContentLoaded', () => {
         btnIniciar.style.display = "none";
         displayResultado.innerText = "Buscando câmeras...";
 
-        // 1. Pede permissão e busca todas as lentes do celular
+        // Pede permissão e busca todas as lentes do celular
         Html5Qrcode.getCameras().then(devices => {
             if (devices && devices.length) {
                 selectCameras.innerHTML = ''; // Limpa a lista
                 
-                // 2. Cria as opções no select
+                // Cria as opções no select
                 devices.forEach(device => {
                     const option = document.createElement('option');
                     option.value = device.id;
@@ -81,13 +81,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     selectCameras.appendChild(option);
                 });
 
-                // 3. Tenta chutar a câmera principal traseira por padrão
                 let cameraTraseira = devices.find(d => d.label.toLowerCase().includes('back') && !d.label.toLowerCase().includes('ultrawide'));
                 if(cameraTraseira) {
                     selectCameras.value = cameraTraseira.id;
                 }
 
-                // 4. Mostra a interface e inicia
+                // Mostra a interface e inicia
                 controlesCamera.style.display = "flex";
                 divCamera.style.display = "block";
                 displayResultado.innerText = "Posicione o código de barras...";

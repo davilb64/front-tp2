@@ -17,7 +17,7 @@ document.getElementById('meu-form-login').addEventListener('submit', function(ev
         senha: senha
     };
 
-    fetch('https://projeto-tecnicas-de-programacao-2.onrender.com/api/usuarios/login', {
+    fetch(`${API_BASE_URL}/api/usuarios/login`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

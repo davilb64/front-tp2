@@ -17,7 +17,7 @@ document.getElementById('form-cadastro').addEventListener('submit', function(eve
         senha: senha
     };
 
-    fetch('https://projeto-tecnicas-de-programacao-2.onrender.com/api/usuarios/cadastro', {
+    fetch(`${API_BASE_URL}/api/usuarios/cadastro`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
