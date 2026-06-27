@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
         window.location.href = 'index.html'; 
     });
 
-// ==========================================
+    // ==========================================
     // LÓGICA DO LEITOR DE CÓDIGO DE BARRAS CUSTOMIZADO
     // ==========================================
     
@@ -61,3 +61,4 @@ document.addEventListener('DOMContentLoaded', () => {
             btnIniciar.style.display = "inline-block";
         });
     });
+});
