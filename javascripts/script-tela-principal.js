@@ -17,48 +17,102 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // ==========================================
-    // LÓGICA DO LEITOR DE CÓDIGO DE BARRAS CUSTOMIZADO
+    // LEITOR DE CÓDIGO DE BARRAS 
     // ==========================================
     
     const html5QrCode = new Html5Qrcode("leitor-camera");
     const btnIniciar = document.getElementById('btn-iniciar-leitor');
     const divCamera = document.getElementById('leitor-camera');
     const displayResultado = document.getElementById('resultado-leitura');
+    
+    const controlesCamera = document.getElementById('controles-camera');
+    const selectCameras = document.getElementById('lista-cameras');
+    const btnParar = document.getElementById('btn-parar-leitor');
 
-    btnIniciar.addEventListener('click', () => {
-        // Esconde o botão e mostra a área da câmera
-        btnIniciar.style.display = "none";
-        divCamera.style.display = "block";
-        displayResultado.innerText = "Posicione o código de barras...";
-
-        // Inicia a câmera
+    // Função que liga a lente específica escolhida
+    function iniciarCamera(cameraId) {
         html5QrCode.start(
-            { facingMode: "environment" }, // Força o uso da câmera traseira do celular
+            cameraId, 
             {
                 fps: 10,
-                qrbox: { width: 250, height: 100 } // Retângulo ideal para código de barras
+                qrbox: { width: 250, height: 100 }
             },
             (textoDecodificado) => {
-                // SUCESSO NA LEITURA
+                // SUCESSO
                 displayResultado.innerText = textoDecodificado;
                 console.log(`Código lido: ${textoDecodificado}`);
                 
-                // Desliga a câmera e volta a interface ao normal
-                html5QrCode.stop().then(() => {
-                    divCamera.style.display = "none";
-                    btnIniciar.style.display = "inline-block";
-                    btnIniciar.innerText = "📷 Escanear Outro Produto";
-                }).catch((err) => {
-                    console.log("Erro ao desligar câmera", err);
-                });
+                pararCamera();
+                btnIniciar.innerText = "📷 Escanear Outro Produto";
             },
-            (erroDeLeitura) => {
-                // Ignora os erros constantes de "não encontrei código neste frame"
-            }
+            (erro) => { /* Ignora os quadros sem código */ }
         ).catch((err) => {
-            alert("Erro ao acessar a câmera. Verifique as permissões.");
-            divCamera.style.display = "none";
+            alert("Erro ao acessar a lente: " + err);
+            pararCamera();
+        });
+    }
+
+    // Desliga tudo e esconde os vídeos
+    function pararCamera() {
+        if (html5QrCode.isScanning) {
+            html5QrCode.stop().then(() => {
+                divCamera.style.display = "none";
+                controlesCamera.style.display = "none";
+                btnIniciar.style.display = "inline-block";
+            });
+        }
+    }
+
+    // Ação do Botão "Começar"
+    btnIniciar.addEventListener('click', () => {
+        btnIniciar.style.display = "none";
+        displayResultado.innerText = "Buscando câmeras...";
+
+        // 1. Pede permissão e busca todas as lentes do celular
+        Html5Qrcode.getCameras().then(devices => {
+            if (devices && devices.length) {
+                selectCameras.innerHTML = ''; // Limpa a lista
+                
+                // 2. Cria as opções no select
+                devices.forEach(device => {
+                    const option = document.createElement('option');
+                    option.value = device.id;
+                    option.text = device.label || `Câmera ${selectCameras.length + 1}`;
+                    selectCameras.appendChild(option);
+                });
+
+                // 3. Tenta chutar a câmera principal traseira por padrão
+                let cameraTraseira = devices.find(d => d.label.toLowerCase().includes('back') && !d.label.toLowerCase().includes('ultrawide'));
+                if(cameraTraseira) {
+                    selectCameras.value = cameraTraseira.id;
+                }
+
+                // 4. Mostra a interface e inicia
+                controlesCamera.style.display = "flex";
+                divCamera.style.display = "block";
+                displayResultado.innerText = "Posicione o código de barras...";
+                
+                iniciarCamera(selectCameras.value);
+            } else {
+                alert("Nenhuma câmera encontrada.");
+                btnIniciar.style.display = "inline-block";
+            }
+        }).catch(err => {
+            alert("Permissão de câmera negada.");
             btnIniciar.style.display = "inline-block";
         });
     });
+
+    // Se o usuário trocar a câmera na caixinha
+    selectCameras.addEventListener('change', () => {
+        if (html5QrCode.isScanning) {
+            // Desliga a lente atual e liga a lente nova
+            html5QrCode.stop().then(() => {
+                iniciarCamera(selectCameras.value);
+            });
+        }
+    });
+
+    // Botão de parar
+    btnParar.addEventListener('click', pararCamera);
 });

@@ -40,6 +40,12 @@
             
             <button id="btn-iniciar-leitor" class="btn-customizado">Começar a Escanear</button>
             
+            <!-- Controles extras (Escolher câmera e Cancelar) -->
+            <div id="controles-camera" style="display: none; flex-direction: column; align-items: center; gap: 10px; margin-bottom: 15px;">
+                <select id="lista-cameras" class="input-customizado"></select>
+                <button id="btn-parar-leitor" class="btn-secundario">Parar Leitor</button>
+            </div>
+            
             <div id="leitor-camera" class="video-escondido"></div>
             
             <div style="margin-top: 20px; padding: 15px; background: var(--fundo-tela); border-radius: 8px;">

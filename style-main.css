@@ -206,3 +206,30 @@ body {
     border: 3px solid var(--roxo-principal);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
+
+.input-customizado {
+    padding: 10px;
+    border: 1px solid var(--roxo-principal);
+    border-radius: 8px;
+    width: 100%;
+    max-width: 300px;
+    font-size: 14px;
+    background-color: white;
+    outline: none;
+    font-family: "Ubuntu", sans-serif;
+}
+
+.btn-secundario {
+    background-color: transparent;
+    color: var(--texto-escuro);
+    border: 1px solid var(--borda);
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-weight: bold;
+}
+
+.btn-secundario:hover {
+    background-color: #e5e7eb;
+}
