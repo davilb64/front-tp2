@@ -35,13 +35,24 @@
 
             <hr class="divisor">
 
-            <p class="landing-text">
-                Em Produção!
-            </p>
+            <!-- Código de barras -->
+            <h3 style="color: var(--roxo-principal); margin-bottom: 15px;">Leitor de Código de Barras</h3>
+            
+            <div id="leitor-camera" style="width: 100%; max-width: 500px; margin: 0 auto;"></div>
+            
+            <div style="margin-top: 20px; padding: 15px; background: var(--fundo-tela); border-radius: 8px;">
+                <p>Resultado da Leitura:</p>
+                <h2 id="resultado-leitura" style="color: var(--texto-escuro); margin-top: 10px;">Aguardando...</h2>
+            </div>
+            
         </section>
     </main>
+
+    
     <div class="xiu"><a href="./logos/logo-secreta.jpeg"><p>xiu</p></a></div>
 
     <script src="javascripts/script-tela-principal.js"></script>
+    <!-- Importando a biblioteca Html5Qrcode -->
+    <script src="https://unpkg.com/html5-qrcode"></script>
 </body>
 </html>
