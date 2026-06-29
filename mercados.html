@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CarrinhoColetivo - Mercados</title>
+    <link rel="icon" type="image/x-icon" href="/logos/roxa sem fundo.svg">
+    <link rel="stylesheet" href="style-main.css">
+    <link rel="stylesheet" href="style-mercados.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <img src="./logos/branca sem fundo.png" alt="Logo CarrinhoColetivo">
+                <h1>CarrinhoColetivo</h1>
+            </div>
+            <div class="user-actions">
+                <span class="badge-pontos" id="perfil-usuario">⭐ 125 pontos</span>
+                <a href="index.html" class="btn-sair">← Logout</a>
+            </div>
+        </div>  
+    </header>
+
+    <main class="container">
+        <!-- BARRA DE NAVEGAÇÃO -->
+        <nav class="nav-tabs">
+            <a href="tela-principal.html" class="tab">📷 Início</a>
+            <a href="carrinho.html" class="tab">🛒 Carrinho</a>
+            <a href="mercados.html" class="tab active">🏪 Mercados</a>
+            <a href="admin-produtos.html" class="tab">⚙️ Admin</a>
+        </nav>
+
+        <!-- LOCALIZAÇÃO -->
+        <div class="card">
+            <h2 class="card-title">📍 Minha Localização</h2>
+            <div class="localizacao-grid">
+                <div class="localizacao-inputs">
+                    <button onclick="obterLocalizacao()" class="btn-customizado" style="max-width: 250px;">
+                        📍 Usar GPS
+                    </button>
+                    <div style="display: flex; gap: 10px; flex: 1;">
+                        <input type="text" id="enderecoManual" placeholder="Ou digite seu endereço..." class="input-customizado">
+                        <button onclick="buscarPorEndereco()" class="btn-customizado-small">Buscar</button>
+                    </div>
+                </div>
+                <div id="localizacaoInfo" style="font-size: 14px; color: var(--texto-cinza); margin-top: 10px;">
+                    Clique em "Usar GPS" ou digite seu endereço
+                </div>
+            </div>
+        </div>
+
+        <!-- ORDENAÇÃO E FILTROS -->
+        <div class="card">
+            <div class="ordenacao-container">
+                <div class="ordenacao-botoes">
+                    <button class="btn-ordenacao active" data-ordem="preco" onclick="ordenarMercados('preco')">
+                        💰 Por Preço
+                    </button>
+                    <button class="btn-ordenacao" data-ordem="distancia" onclick="ordenarMercados('distancia')">
+                        📍 Por Distância
+                    </button>
+                    <button class="btn-ordenacao" data-ordem="precoDistancia" onclick="ordenarMercados('precoDistancia')">
+                        ⚖️ Melhor Custo-Benefício
+                    </button>
+                </div>
+                <div class="filtro-container">
+                    <input type="text" id="filtroMercado" placeholder="🔍 Filtrar mercado..." class="input-customizado">
+                </div>
+            </div>
+        </div>
+
+        <!-- LISTA DE MERCADOS -->
+        <div class="grid-2colunas" id="listaMercadosContainer">
+            <div class="card mercado-card">
+                <div class="mercado-header">
+                    <h3 class="mercado-nome">🛒 Supermercado Bom Preço</h3>
+                    <span class="mercado-distancia">📏 1.2 km</span>
+                </div>
+                <div class="mercado-preco-total">
+                    <span>Total estimado:</span>
+                    <span class="preco-destaque">R$ 89,50</span>
+                </div>
+                <div class="mercado-itens">
+                    <p style="font-size: 13px; color: var(--texto-cinza);">Arroz: R$ 24,90 | Feijão: R$ 7,90 | Leite: R$ 4,20</p>
+                </div>
+                <div class="mercado-acoes">
+                    <button class="btn-customizado-small">Ver produtos</button>
+                    <button class="btn-secundario">Compartilhar preço</button>
+                </div>
+            </div>
+
+            <div class="card mercado-card">
+                <div class="mercado-header">
+                    <h3 class="mercado-nome">🛒 Mercado Econômico</h3>
+                    <span class="mercado-distancia">📏 2.5 km</span>
+                </div>
+                <div class="mercado-preco-total">
+                    <span>Total estimado:</span>
+                    <span class="preco-destaque">R$ 85,20</span>
+                </div>
+                <div class="mercado-itens">
+                    <p style="font-size: 13px; color: var(--texto-cinza);">Arroz: R$ 23,90 | Feijão: R$ 8,20 | Leite: R$ 4,00</p>
+                </div>
+                <div class="mercado-acoes">
+                    <button class="btn-customizado-small">Ver produtos</button>
+                    <button class="btn-secundario">Compartilhar preço</button>
+                </div>
+            </div>
+
+            <div class="card mercado-card">
+                <div class="mercado-header">
+                    <h3 class="mercado-nome">🛒 Super Atacado</h3>
+                    <span class="mercado-distancia">📏 0.8 km</span>
+                </div>
+                <div class="mercado-preco-total">
+                    <span>Total estimado:</span>
+                    <span class="preco-destaque">R$ 95,90</span>
+                </div>
+                <div class="mercado-itens">
+                    <p style="font-size: 13px; color: var(--texto-cinza);">Arroz: R$ 26,90 | Feijão: R$ 8,90 | Leite: R$ 4,80</p>
+                </div>
+                <div class="mercado-acoes">
+                    <button class="btn-customizado-small">Ver produtos</button>
+                    <button class="btn-secundario">Compartilhar preço</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- MAPA (placeholder) -->
+        <div class="card">
+            <h2 class="card-title">🗺️ Mapa dos Mercados</h2>
+            <div class="mapa-placeholder">
+                <p>📍 Mapa interativo dos mercados próximos</p>
+                <p style="font-size: 12px; color: var(--texto-cinza);">(Integração com Google Maps ou Leaflet)</p>
+            </div>
+        </div>
+    </main>
+
+    <div class="xiu"><a href="./logos/logo-secreta.jpeg"><p>xiu</p></a></div>
+    <script src="javascripts/config.js"></script>
+    <script src="javascripts/script-mercados.js"></script>
+</body>
+</html>

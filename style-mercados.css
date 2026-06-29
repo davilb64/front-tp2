@@ -1,0 +1,172 @@
+/* ========== MERCADOS ========== */
+.mercado-card {
+    transition: all 0.3s;
+}
+
+.mercado-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+}
+
+.mercado-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.mercado-nome {
+    font-size: 18px;
+    color: var(--texto-escuro);
+}
+
+.mercado-distancia {
+    font-size: 13px;
+    color: var(--texto-cinza);
+    background: var(--fundo-tela);
+    padding: 4px 10px;
+    border-radius: 20px;
+}
+
+.mercado-preco-total {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-top: 1px solid var(--borda);
+    border-bottom: 1px solid var(--borda);
+    margin: 10px 0;
+}
+
+.preco-destaque {
+    font-size: 20px;
+    font-weight: 700;
+    color: #4CAF50;
+}
+
+.mercado-itens {
+    font-size: 13px;
+    color: var(--texto-cinza);
+    margin: 10px 0;
+}
+
+.mercado-acoes {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.mercado-acoes .btn-customizado-small {
+    font-size: 13px;
+    padding: 8px 16px;
+}
+
+.mercado-acoes .btn-secundario {
+    font-size: 13px;
+    padding: 8px 16px;
+}
+
+/* ========== ORDENAÇÃO ========== */
+.ordenacao-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.ordenacao-botoes {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.btn-ordenacao {
+    padding: 8px 16px;
+    border: 1px solid var(--borda);
+    background: white;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.btn-ordenacao:hover {
+    border-color: var(--roxo-principal);
+    color: var(--roxo-principal);
+}
+
+.btn-ordenacao.active {
+    background: var(--roxo-principal);
+    color: white;
+    border-color: var(--roxo-principal);
+}
+
+.filtro-container {
+    min-width: 200px;
+}
+
+/* ========== LOCALIZAÇÃO ========== */
+.localizacao-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.localizacao-inputs {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.localizacao-inputs .btn-customizado {
+    max-width: 200px;
+}
+
+/* ========== MAPA ========== */
+.mapa-placeholder {
+    background: var(--fundo-tela);
+    border-radius: 8px;
+    padding: 40px 20px;
+    text-align: center;
+    color: var(--texto-cinza);
+    border: 2px dashed var(--borda);
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.mapa-placeholder p {
+    margin: 5px 0;
+}
+
+/* ========== RESPONSIVO ========== */
+@media (max-width: 600px) {
+    .ordenacao-container {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .ordenacao-botoes {
+        justify-content: center;
+    }
+    
+    .localizacao-inputs {
+        flex-direction: column;
+    }
+    
+    .localizacao-inputs .btn-customizado {
+        max-width: 100%;
+    }
+    
+    .mercado-acoes {
+        flex-direction: column;
+    }
+    
+    .mercado-acoes button {
+        width: 100%;
+    }
+}

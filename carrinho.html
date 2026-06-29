@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CarrinhoColetivo - Carrinho</title>
+    <link rel="icon" type="image/x-icon" href="/logos/roxa sem fundo.svg">
+    <link rel="stylesheet" href="style-main.css">
+    <link rel="stylesheet" href="style-carrinho.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <img src="./logos/branca sem fundo.png" alt="Logo CarrinhoColetivo">
+                <h1>CarrinhoColetivo</h1>
+            </div>
+            <div class="user-actions">
+                <span class="badge-pontos" id="perfil-usuario">⭐ 125 pontos</span>
+                <a href="index.html" class="btn-sair">← Logout</a>
+            </div>
+        </div>  
+    </header>
+
+    <main class="container">
+        <!-- BARRA DE NAVEGAÇÃO -->
+        <nav class="nav-tabs">
+            <a href="tela-principal.html" class="tab">📷 Início</a>
+            <a href="carrinho.html" class="tab active">🛒 Carrinho</a>
+            <a href="mercados.html" class="tab">🏪 Mercados</a>
+            <a href="admin-produtos.html" class="tab">⚙️ Admin</a>
+        </nav>
+
+        <div class="grid-2colunas">
+            <!-- Coluna Esquerda: Lista de Itens -->
+            <div class="card">
+                <h2 class="card-title">🛍️ Meu Carrinho</h2>
+                
+                <!-- Barra de busca -->
+                <div class="search-bar">
+                    <input type="text" id="buscaProduto" placeholder="🔍 Buscar produto..." class="input-customizado">
+                </div>
+
+                <!-- Adicionar item -->
+                <div class="add-item">
+                    <input type="text" id="novoItem" placeholder="Digite o produto..." class="input-customizado">
+                    <button onclick="adicionarItem()" class="btn-customizado-small">+ Adicionar</button>
+                </div>
+
+                <!-- Lista de itens -->
+                <div id="listaItensContainer">
+                    <ul class="lista-itens" id="listaItens">
+                        <!-- Itens serão adicionados dinamicamente -->
+                    </ul>
+                </div>
+
+                <!-- Total -->
+                <div class="total-compra">
+                    <div class="total-row">
+                        <span>Subtotal:</span>
+                        <span id="subtotal">R$ 0,00</span>
+                    </div>
+                    <div class="total-row">
+                        <span>Itens:</span>
+                        <span id="quantidadeItens">0</span>
+                    </div>
+                    <div class="total-row total-final">
+                        <span>Total:</span>
+                        <span id="totalFinal">R$ 0,00</span>
+                    </div>
+                </div>
+
+                <!-- Botões de ação -->
+                <div class="acoes-carrinho">
+                    <button onclick="salvarCarrinho()" class="btn-customizado" style="max-width: 200px;">
+                        💾 Salvar Carrinho
+                    </button>
+                    <button onclick="limparCarrinho()" class="btn-secundario" style="border-color: #f44336; color: #f44336;">
+                        🗑️ Limpar Tudo
+                    </button>
+                </div>
+            </div>
+
+            <!-- Coluna Direita: Resumo e Recomendações -->
+            <div>
+                <!-- Resumo da compra -->
+                <div class="card">
+                    <h2 class="card-title">📊 Resumo</h2>
+                    <div id="resumoCompra">
+                        <p style="color: var(--texto-cinza);">Adicione itens ao carrinho para ver o resumo aqui.</p>
+                    </div>
+                </div>
+
+                <!-- Preço esperado -->
+                <div class="card">
+                    <h2 class="card-title">💰 Preço Esperado</h2>
+                    <div id="precoEsperado">
+                        <p style="color: var(--texto-cinza);">Baseado em compras anteriores e compartilhamentos.</p>
+                    </div>
+                    <div id="comparacaoPrecos" style="margin-top: 10px;"></div>
+                </div>
+
+                <!-- Compartilhar preço -->
+                <div class="card destaque">
+                    <h2 class="card-title">🎁 Compartilhe e Ganhe</h2>
+                    <p style="font-size: 14px; color: var(--texto-cinza); margin-bottom: 10px;">
+                        Compartilhe preços de produtos e ganhe <strong>10 pontos</strong> por cada compartilhamento!
+                    </p>
+                    <button onclick="abrirCompartilharPreco()" class="btn-customizado" style="max-width: 100%;">
+                        📤 Compartilhar Preço
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal para compartilhar preço -->
+    <div id="modalCompartilhar" class="modal">
+        <div class="modal-content">
+            <!--<span class="modal-close" onclick="fecharModal()">&times;</span>*//-->
+            <h2>Compartilhar Preço</h2>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Produto:</label>
+                    <input type="text" id="modalProduto" placeholder="Nome do produto" class="input-customizado">
+                </div>
+                <div class="form-group">
+                    <label>Preço (R$):</label>
+                    <input type="number" id="modalPreco" placeholder="0.00" step="0.01" class="input-customizado">
+                </div>
+                <div class="form-group">
+                    <label>Supermercado:</label>
+                    <input type="text" id="modalSupermercado" placeholder="Onde comprou?" class="input-customizado">
+                </div>
+                <button onclick="enviarCompartilhamento()" class="btn-customizado" style="max-width: 100%;">
+                    ✅ Compartilhar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="xiu"><a href="./logos/logo-secreta.jpeg"><p>xiu</p></a></div>
+    <script src="javascripts/config.js"></script>
+    <script src="javascripts/script-carrinho.js"></script>
+</body>
+</html>

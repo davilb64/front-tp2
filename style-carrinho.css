@@ -1,0 +1,160 @@
+/* ========== LISTA DE ITENS ========== */
+.lista-itens {
+    list-style: none;
+    padding: 0;
+    margin: 15px 0;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.lista-itens li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 15px;
+    border-bottom: 1px solid var(--borda);
+    transition: background 0.3s;
+}
+
+.lista-itens li:hover {
+    background: #faf5ff;
+}
+
+.item-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex: 1;
+}
+
+.item-nome {
+    font-weight: 500;
+}
+
+.item-preco {
+    font-size: 14px;
+    color: var(--texto-cinza);
+}
+
+.item-quantidade {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-qtd {
+    width: 30px;
+    height: 30px;
+    border: 1px solid var(--borda);
+    background: white;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-qtd:hover {
+    background: var(--roxo-principal);
+    color: white;
+    border-color: var(--roxo-principal);
+}
+
+.qtd-valor {
+    font-weight: 500;
+    min-width: 30px;
+    text-align: center;
+}
+
+.btn-remover-item {
+    background: none;
+    border: none;
+    color: #f44336;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 5px;
+    transition: 0.3s;
+}
+
+.btn-remover-item:hover {
+    transform: scale(1.2);
+}
+
+/* ========== TOTAL ========== */
+.total-compra {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 2px solid var(--borda);
+}
+
+.total-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+    font-size: 14px;
+}
+
+.total-final {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--roxo-principal);
+    padding-top: 10px;
+    border-top: 2px solid var(--roxo-principal);
+}
+
+.acoes-carrinho {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+    flex-wrap: wrap;
+}
+
+/* ========== SEARCH ========== */
+.search-bar {
+    margin-bottom: 15px;
+}
+
+.add-item {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.add-item .input-customizado {
+    flex: 1;
+}
+
+/* ========== RESPOSTA ========== */
+#resumoCompra {
+    font-size: 14px;
+}
+
+#resumoCompra .resumo-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+/* ========== RESPONSIVO ========== */
+@media (max-width: 600px) {
+    .add-item {
+        flex-direction: column;
+    }
+    
+    .add-item .btn-customizado-small {
+        width: 100%;
+    }
+    
+    .item-info {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    
+    .item-quantidade {
+        margin-left: auto;
+    }
+}
