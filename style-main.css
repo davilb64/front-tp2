@@ -63,6 +63,16 @@ body {
     gap: 15px;
 }
 
+.user-actions:hover {
+    color: var(--roxo-claro);
+}
+
+
+.user-actions a{
+    text-decoration: none;
+    color: white;
+}
+
 .badge-pontos {
     background: rgba(255, 255, 255, 0.2);
     padding: 6px 12px;
@@ -231,6 +241,7 @@ textarea.input-customizado {
 
 .btn-secundario:hover {
     background: var(--fundo-tela);
+    color: var(--texto-escuro);
 }
 
 /* ========== NAVEGAÇÃO TABS ========== */
@@ -291,28 +302,31 @@ textarea.input-customizado {
 
 /* ========== MODAL ========== */
 .modal {
-    display: none;
+    display: none; /* Padrão: oculto */
     position: fixed;
-    z-index: 999;
+    z-index: 1000;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.5);
-    align-items: center;
+    background-color: rgba(0,0,0,0.5);
+    /* Centralização com Flexbox */
     justify-content: center;
+    align-items: center;
 }
 
-.modal-content {
-    background: white;
-    padding: 30px;
-    border-radius: 12px;
-    max-width: 500px;
-    width: 90%;
-    max-height: 90vh;
-    overflow-y: auto;
-    position: relative;
-    animation: modalAnim 0.3s ease;
+.modal-content { 
+        background: white; 
+        padding: 25px; 
+        border-radius: 12px; 
+        width: 90%; 
+        max-width: 400px; 
+        box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        
+        display: flex; 
+        flex-direction: column;
+        justify-content: center; 
+        align-items: center; 
 }
 
 @keyframes modalAnim {
@@ -380,4 +394,97 @@ textarea.input-customizado {
     .landing-card {
         padding: 30px 10px;
     }
+}
+
+/* Transição entre páginas */
+body { animation: fadeIn 0.5s ease-in-out; }
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateX(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ========== MODO COMPRAS (CHECK-IN) ========== */
+.header-compras {
+    background: linear-gradient(135deg, var(--roxo-principal), var(--roxo-claro));
+    color: white;
+    padding: 20px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.painel-total {
+    background: #48bb78; /* Verde sucesso */
+    color: white;
+    padding: 20px;
+    text-align: center;
+    font-size: 22px;
+    font-weight: 700;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    box-shadow: 0 -4px 10px rgba(0,0,0,0.1);
+}
+
+.item-compra {
+    padding: 18px;
+    border: 1px solid var(--borda);
+    border-radius: 12px;
+    margin-bottom: 12px;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+}
+
+.item-compra:hover {
+    border-color: var(--roxo-claro);
+}
+
+.item-compra.comprado {
+    background: #f8f9fa;
+    opacity: 0.7;
+}
+
+.item-compra.comprado .texto-item {
+    text-decoration: line-through;
+    color: var(--texto-cinza);
+}
+
+/* Badges de Preço no Item */
+.badge-preco {
+    font-size: 11px;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 5px;
+}
+
+.badge-exato {
+    background: #e6fffa;
+    color: #047481;
+    border: 1px solid #b2f5ea;
+}
+
+.badge-media {
+    background: #fffaf0;
+    color: #dd6b20;
+    border: 1px solid #feebc8;
+}
+
+.badge-nenhum {
+    background: #f1f5f9;
+    color: #64748b;
+    border: 1px solid #e2e8f0;
 }

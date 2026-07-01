@@ -7,9 +7,8 @@
     <link rel="icon" type="image/x-icon" href="/logos/roxa sem fundo.svg">
     <link rel="stylesheet" href="style-main.css">
     <link rel="stylesheet" href="style-admin.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
 </head>
 <body>
     <header class="header">
@@ -19,25 +18,24 @@
                 <h1>CarrinhoColetivo</h1>
             </div>
             <div class="user-actions">
-                <span class="badge-pontos" id="perfil-usuario">👑 Administrador</span>
-                <a href="index.html" class="btn-sair">← Logout</a>
+                <a href="perfil.html" class="badge-pontos" id="perfil-usuario" style="text-decoration: none; cursor: pointer; transition: 0.2s;">
+                    <i class="ph ph-user"></i> Carregando...
+                </a>
             </div>
         </div>  
     </header>
 
     <main class="container">
-        <!-- BARRA DE NAVEGAÇÃO -->
         <nav class="nav-tabs">
-            <a href="tela-principal.html" class="tab">📷 Início</a>
-            <a href="carrinho.html" class="tab">🛒 Carrinho</a>
-            <a href="mercados.html" class="tab">🏪 Mercados</a>
-            <a href="admin-produtos.html" class="tab active">⚙️ Admin</a>
+            <a href="tela-principal.html" class="tab"><i class="ph ph-house"></i> Início</a>
+            <a href="listas.html" class="tab"><i class="ph ph-list-checks"></i> Listas</a>
+            <a href="mercados.html" class="tab"><i class="ph ph-storefront"></i> Mercados</a>
         </nav>
 
         <div class="grid-2colunas">
             <!-- Coluna Esquerda: Cadastro de Produtos -->
             <div class="card">
-                <h2 class="card-title">📦 Cadastrar Novo Produto</h2>
+                <h2 class="card-title"><i class="ph ph-package"></i> Cadastrar Novo Produto</h2>
                 
                 <form id="formProduto" onsubmit="return false;">
                     <div class="form-group">
@@ -78,94 +76,54 @@
                     </div>
 
                     <button onclick="cadastrarProduto()" class="btn-customizado" style="max-width: 100%;">
-                        ✅ Cadastrar Produto
+                        <i class="ph ph-check-circle"></i> Cadastrar Produto
                     </button>
                 </form>
+                
+                <hr style="margin: 20px 0;">
+
+                <h2 class="card-title"><i class="ph ph-storefront"></i> Cadastrar Mercado</h2>
+                <div class="form-group">
+                    <input type="text" id="novoNomeMercado" placeholder="Nome do Estabelecimento" class="input-customizado">
+                </div>
+                <button onclick="cadastrarMercadoDireto()" class="btn-customizado" style="max-width: 100%;">Cadastrar Mercado</button>
             </div>
 
             <!-- Coluna Direita: Gerenciamento -->
             <div>
-                <!-- Produtos Pendentes de Aprovação -->
+                <!-- Produtos Pendentes de Aprovação (VAZIO PARA O JS) -->
                 <div class="card">
-                    <h2 class="card-title">⏳ Pendentes de Aprovação</h2>
+                    <h2 class="card-title"><i class="ph ph-hourglass-high"></i> Pendentes de Aprovação</h2>
                     <div id="produtosPendentes">
-                        <div class="produto-pendente">
-                            <div class="pendente-info">
-                                <strong>Leite Integral</strong>
-                                <span class="badge-pendente">usuário: joao***</span>
-                                <p style="font-size: 13px; color: var(--texto-cinza);">
-                                    Código: 789123456 | Preço: R$ 4,50 | Peso: 1L
-                                </p>
-                            </div>
-                            <div class="pendente-acoes">
-                                <button class="btn-aprovar" onclick="aprovarProduto(1)">✅ Aprovar</button>
-                                <button class="btn-rejeitar" onclick="rejeitarProduto(1)">❌ Rejeitar</button>
-                            </div>
-                        </div>
-
-                        <div class="produto-pendente">
-                            <div class="pendente-info">
-                                <strong>Detergente Neutro</strong>
-                                <span class="badge-pendente">usuário: maria***</span>
-                                <p style="font-size: 13px; color: var(--texto-cinza);">
-                                    Código: 789123457 | Preço: R$ 2,30 | Peso: 500ml
-                                </p>
-                            </div>
-                            <div class="pendente-acoes">
-                                <button class="btn-aprovar" onclick="aprovarProduto(2)">✅ Aprovar</button>
-                                <button class="btn-rejeitar" onclick="rejeitarProduto(2)">❌ Rejeitar</button>
-                            </div>
-                        </div>
+                        <!-- O JS VAI INJETAR OS PENDENTES AQUI -->
+                    </div>
+                    <div id="mercadosPendentes" style="margin-top: 20px;">
+                        <!-- JS INJETARÁ AQUI -->
                     </div>
                 </div>
 
-                <!-- Produtos Cadastrados -->
+                <!-- Produtos Cadastrados (VAZIO PARA O JS) -->
                 <div class="card">
-                    <h2 class="card-title">📋 Produtos no Catálogo</h2>
+                    <h2 class="card-title"><i class="ph ph-list-dashes"></i> Produtos no Catálogo</h2>
                     <div class="busca-admin">
-                        <input type="text" id="buscaAdmin" placeholder="🔍 Buscar produto..." class="input-customizado">
+                        <input type="text" id="buscaAdmin" placeholder="Buscar produto..." class="input-customizado">
                     </div>
                     <div id="catalogoProdutos">
-                        <div class="produto-catalogo">
-                            <span><strong>Arroz</strong> - R$ 25,90</span>
-                            <span class="badge-categoria">alimentos</span>
-                            <button class="btn-editar" onclick="editarProduto(1)">✏️</button>
-                            <button class="btn-excluir" onclick="excluirProduto(1)">🗑️</button>
-                        </div>
-                        <div class="produto-catalogo">
-                            <span><strong>Feijão</strong> - R$ 8,50</span>
-                            <span class="badge-categoria">alimentos</span>
-                            <button class="btn-editar" onclick="editarProduto(2)">✏️</button>
-                            <button class="btn-excluir" onclick="excluirProduto(2)">🗑️</button>
-                        </div>
-                        <div class="produto-catalogo">
-                            <span><strong>Leite</strong> - R$ 4,50</span>
-                            <span class="badge-categoria">bebidas</span>
-                            <button class="btn-editar" onclick="editarProduto(3)">✏️</button>
-                            <button class="btn-excluir" onclick="excluirProduto(3)">🗑️</button>
-                        </div>
+                        <!-- O JS VAI INJETAR O CATÁLOGO AQUI -->
                     </div>
                 </div>
 
-                <!-- Estatísticas -->
+                <!-- Estatísticas (ZERADAS PARA O JS) -->
                 <div class="card">
-                    <h2 class="card-title">📊 Estatísticas</h2>
+                    <h2 class="card-title"><i class="ph ph-chart-bar"></i> Estatísticas</h2>
                     <div class="stats-grid">
                         <div class="stat-item">
-                            <span class="stat-valor">45</span>
+                            <span class="stat-valor" id="stat-produtos">0</span>
                             <span class="stat-label">Produtos</span>
                         </div>
                         <div class="stat-item">
-                            <span class="stat-valor">12</span>
+                            <span class="stat-valor" id="stat-pendentes">0</span>
                             <span class="stat-label">Pendentes</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-valor">28</span>
-                            <span class="stat-label">Aprovados</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-valor">156</span>
-                            <span class="stat-label">Preços compartilhados</span>
                         </div>
                     </div>
                 </div>
@@ -173,7 +131,6 @@
         </div>
     </main>
 
-    <div class="xiu"><a href="./logos/logo-secreta.jpeg"><p>xiu</p></a></div>
     <script src="javascripts/config.js"></script>
     <script src="javascripts/script-admin.js"></script>
 </body>

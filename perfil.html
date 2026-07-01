@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CarrinhoColetivo - Meu Perfil</title>
+    <link rel="stylesheet" href="style-main.css">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <img src="./logos/branca sem fundo.png" alt="Logo CarrinhoColetivo">
+                <h1>CarrinhoColetivo</h1>
+            </div>
+            <div class="user-actions">
+                <a href="tela-principal.html" class="btn-secundario"><i class="ph ph-arrow-left"></i> Voltar</a>
+        </div>
+        </div>  
+    </header>
+
+    <main class="container">
+        <div class="card" style="max-width: 500px; margin: 0 auto; text-align: center;">
+            <i class="ph ph-user-circle" style="font-size: 80px; color: var(--roxo-principal);"></i>
+            <h2 class="card-title" id="nomePerfil">Carregando...</h2>
+            <p id="emailPerfil" style="color: var(--texto-cinza); margin-bottom: 20px;"></p>
+            
+            <hr class="divisor">
+
+            <button id="btn-sair" class="btn-customizado" style="background-color: #f44336; margin-top: 20px;">
+                <i class="ph ph-sign-out"></i> Sair da Conta
+            </button>
+        </div>
+    </main>
+
+    <script src="javascripts/config.js"></script>
+    <script>
+        const emailSalvo = localStorage.getItem('usuarioLogado');
+        
+        // Exibe o e-mail
+        document.getElementById('emailPerfil').innerText = emailSalvo;
+        
+        document.getElementById('nomePerfil').innerText = "Minha Conta";
+
+        document.getElementById('btn-sair').addEventListener('click', () => {
+            localStorage.clear();
+            window.location.href = 'index.html';
+        });
+    </script>
+</body>
+</html>

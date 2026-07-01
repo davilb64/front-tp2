@@ -1,6 +1,11 @@
 /* ========== MERCADOS ========== */
 .mercado-card {
-    transition: all 0.3s;
+    background: var(--fundo-card);
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid var(--borda);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    transition: transform 0.2s;
 }
 
 .mercado-card:hover {
@@ -84,11 +89,8 @@
     padding: 8px 16px;
     border: 1px solid var(--borda);
     background: white;
-    border-radius: 8px;
     cursor: pointer;
-    transition: all 0.3s;
-    font-weight: 500;
-    font-size: 14px;
+    border-radius: 8px;
 }
 
 .btn-ordenacao:hover {
@@ -169,4 +171,27 @@
     .mercado-acoes button {
         width: 100%;
     }
+}
+
+.card-mercado-pro {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease;
+    border-left: 5px solid var(--roxo-principal);
+}
+
+.card-mercado-pro:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.preco-badge {
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--roxo-principal);
+    margin: 10px 0;
 }

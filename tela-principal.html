@@ -3,15 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CarrinhoColetivo - Início</title>
+    <title>CarrinhoColetivo - Dashboard</title>
     <link rel="icon" type="image/x-icon" href="/logos/roxa sem fundo.svg">
     <link rel="stylesheet" href="style-main.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
 </head>
 <body>
-    
     <header class="header">
         <div class="header-content">
             <div class="logo">
@@ -19,56 +17,44 @@
                 <h1>CarrinhoColetivo</h1>
             </div>
             <div class="user-actions">
-                <span class="badge-pontos" id="perfil-usuario">⭐ 125 pontos</span>
-                <a href="index.html" class="btn-sair">← Logout</a>
+                <a href="perfil.html" class="badge-pontos" id="perfil-usuario" style="text-decoration: none; cursor: pointer; transition: 0.2s;">
+                    <i class="ph ph-user"></i> Carregando...
+                </a>
             </div>
         </div>  
     </header>
 
     <main class="container">
-        <!-- BARRA DE NAVEGAÇÃO -->
         <nav class="nav-tabs">
-            <a href="tela-principal.html" class="tab">📷 Início</a>
-            <a href="carrinho.html" class="tab active">🛒 Carrinho</a>
-            <a href="mercados.html" class="tab">🏪 Mercados</a>
-            <a href="admin-produtos.html" class="tab">⚙️ Admin</a>
+            <a href="tela-principal.html" class="tab active"><i class="ph ph-house"></i> Início</a>
+            <a href="listas.html" class="tab"><i class="ph ph-list-checks"></i> Listas</a>
+            <a href="mercados.html" class="tab"><i class="ph ph-storefront"></i> Mercados</a>
         </nav>
 
         <section class="card landing-card">
-            <h2 class="landing-title">Bem-vindo(a) ao CarrinhoColetivo!</h2>
-            
+            <h2 class="landing-title">Bem-vindo(a) de volta!</h2>
             <p class="subtitle landing-subtitle">
-                Você está autenticado com o e-mail: <strong id="email-display" class="landing-email"></strong>
+                O que vamos planejar hoje?
             </p>
-
             <hr class="divisor">
-
-            <!-- ÁREA DO LEITOR DE CÓDIGO DE BARRAS -->
-            <h3 style="color: var(--roxo-principal); margin-bottom: 15px;">Leitor de Código de Barras</h3>
             
-            <button id="btn-iniciar-leitor" class="btn-customizado">Começar a Escanear</button>
-            
-            <!-- Controles extras (Escolher câmera e Cancelar) -->
-            <div id="controles-camera" style="display: none; flex-direction: column; align-items: center; gap: 10px; margin-bottom: 15px;">
-                <select id="lista-cameras" class="input-customizado"></select>
-                <button id="btn-parar-leitor" class="btn-secundario">Parar Leitor</button>
+            <div class="grid-2colunas" style="margin-top: 20px;">
+                <div class="card" style="text-align: center; cursor: pointer;" onclick="window.location.href='listas.html'">
+                    <i class="ph ph-shopping-cart" style="font-size: 40px; color: var(--roxo-principal);"></i>
+                    <h3>Criar Nova Lista</h3>
+                    <p style="font-size: 13px; color: var(--texto-cinza);">Organize suas compras</p>
+                </div>
+                
+                <div class="card" style="text-align: center; cursor: pointer;" onclick="window.location.href='mercados.html'">
+                    <i class="ph ph-map-pin" style="font-size: 40px; color: var(--roxo-principal);"></i>
+                    <h3>Ver Mercados</h3>
+                    <p style="font-size: 13px; color: var(--texto-cinza);">Encontre os melhores preços</p>
+                </div>
             </div>
-            
-            <div id="leitor-camera" class="video-escondido"></div>
-            
-            <div style="margin-top: 20px; padding: 15px; background: var(--fundo-tela); border-radius: 8px;">
-                <p>Resultado da Leitura:</p>
-                <h2 id="resultado-leitura" style="color: var(--texto-escuro); margin-top: 10px;">Aguardando...</h2>
-            </div>
-            
         </section>
     </main>
 
-    
-    <div class="xiu"><a href="./logos/logo-secreta.jpeg"><p>xiu</p></a></div>
     <script src="javascripts/config.js"></script>
     <script src="javascripts/script-tela-principal.js"></script>
-    <!-- Importando a biblioteca Html5Qrcode -->
-    <script src="https://unpkg.com/html5-qrcode"></script>
 </body>
 </html>

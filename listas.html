@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CarrinhoColetivo - Listas</title>
+    <link rel="icon" type="image/x-icon" href="/logos/roxa sem fundo.svg">
+    <link rel="stylesheet" href="style-main.css">
+    <link rel="stylesheet" href="style-carrinho.css">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <img src="./logos/branca sem fundo.png" alt="Logo CarrinhoColetivo">
+                <h1>CarrinhoColetivo</h1>
+            </div>
+            <div class="user-actions">
+                <a href="perfil.html" class="badge-pontos" id="perfil-usuario" style="text-decoration: none; cursor: pointer; transition: 0.2s;">
+                    <i class="ph ph-user"></i> Carregando...
+                </a>
+            </div>
+        </div>  
+    </header>
+
+    <main class="container">
+        <nav class="nav-tabs">
+            <a href="tela-principal.html" class="tab"><i class="ph ph-house"></i> Início</a>
+            <a href="listas.html" class="tab active"><i class="ph ph-list-checks"></i> Listas</a>
+            <a href="mercados.html" class="tab"><i class="ph ph-storefront"></i> Mercados</a>
+        </nav>
+
+        <div class="grid-2colunas">
+            <!-- Coluna Esquerda: Gerenciamento da Lista -->
+            <div class="card">
+                <!-- Visão Geral das Listas -->
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                    <h2 class="card-title" style="margin: 0;"><i class="ph ph-list-checks"></i> Minhas Listas</h2>
+                    <button onclick="abrirModalNovaLista()" class="btn-secundario" style="padding: 5px 10px; font-size: 13px;">
+                        <i class="ph ph-plus"></i> Nova
+                    </button>
+                </div>
+                
+                <select id="seletor-listas" class="input-customizado" style="margin-bottom: 20px; font-weight: bold; background-color: #faf5ff;" onchange="mudarListaAtiva()">
+                    <option value="">Carregando listas...</option>
+                </select>
+
+                <!-- Botões de Ação (Scanner e Busca) -->
+                <div class="add-item" style="display: flex; gap: 10px; margin-bottom: 20px;">
+                    <button id="btn-abrir-leitor" class="btn-secundario" style="flex: 1;"><i class="ph ph-barcode"></i> Escanear</button>
+                    <button onclick="abrirModalBusca()" class="btn-customizado" style="flex: 2;"><i class="ph ph-magnifying-glass"></i> Buscar Produto</button>
+                </div>
+
+                <!-- Div do Scanner (Escondida) -->
+                <div id="area-leitor-qr" style="display: none; margin-bottom: 20px; border: 2px dashed var(--roxo-principal); border-radius: 8px; padding: 10px;">
+                    <div id="leitor-camera"></div>
+                    <button onclick="fecharLeitor()" class="btn-secundario" style="width: 100%; margin-top: 10px;">Cancelar Leitura</button>
+                </div>
+
+                <!-- Itens da Lista -->
+                <div id="listaItensContainer">
+                    <ul class="lista-itens" id="listaItens">
+                        <!-- O JS VAI INJETAR OS ITENS AQUI -->
+                    </ul>
+                </div>
+
+                <div class="total-compra">
+                    <div class="total-row total-final">
+                        <span>Total de Itens:</span>
+                        <span id="totalItensBadge">0</span>
+                    </div>
+                    <button onclick="deletarListaAtual()" class="btn-secundario" style="width: 100%; margin-top: 15px; border-color: #f44336; color: #f44336;">
+                        <i class="ph ph-trash"></i> Apagar Esta Lista
+                    </button>
+                </div>
+            </div>
+
+            <!-- Coluna Direita -->
+            <div>
+                <div class="card destaque">
+                    <h2 class="card-title"><i class="ph ph-shopping-cart"></i> Modo Compras</h2>
+                    <p style="font-size: 14px; color: var(--texto-cinza); margin-bottom: 10px;">
+                        Vai ao mercado agora? Inicie o check-in para ir riscando sua lista e alimentando os preços da comunidade!
+                    </p>
+                    <button onclick="abrirModalCheckin()" class="btn-customizado" style="max-width: 100%; font-size: 16px; padding: 12px;">
+                        <i class="ph ph-play-circle"></i> Iniciar Compras
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal de Busca de Produtos -->
+    <div id="modalBuscaProduto" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="fecharModalBusca()">&times;</span>
+            <h2 style="color: var(--roxo-principal); margin-bottom: 15px;"><i class="ph ph-magnifying-glass"></i> Catálogo de Produtos</h2>
+            <div class="modal-body">
+                <input type="text" id="inputBuscaModal" placeholder="Digite o nome do produto..." class="input-customizado" onkeyup="filtrarProdutosModal()">
+                
+                <div id="resultadosBusca" style="margin-top: 15px; max-height: 350px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; padding-right: 5px;">
+                    <!-- Resultados injetados aqui -->
+                </div>
+            </div>
+            <div style="margin-top: 20px; text-align: center;">
+                <p style="font-size: 12px; color: var(--texto-cinza);">Não encontrou o produto?</p>
+                <button onclick="abrirModalSolicitar()" class="btn-secundario" style="font-size: 12px;">
+                    <i class="ph ph-plus-circle"></i> Solicitar novo produto
+                </button>
+            </div>
+        </div>
+        
+    </div>
+    
+    <!-- Modal de Nova Lista -->
+    <div id="modalNovaLista" class="modal">
+        <div class="modal-content" style="max-width: 400px;">
+            <span class="modal-close" onclick="fecharModalNovaLista()">&times;</span>
+            <h2 style="color: var(--roxo-principal); margin-bottom: 15px;"><i class="ph ph-list-plus"></i> Criar Nova Lista</h2>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Nome da Lista:</label>
+                    <input type="text" id="inputNomeNovaLista" placeholder="Ex: Compras do Mês, Churrasco..." class="input-customizado" onkeypress="if(event.key === 'Enter') confirmarNovaLista()">
+                </div>
+                <button onclick="confirmarNovaLista()" class="btn-customizado" style="width: 100%; margin-top: 10px;">
+                    <i class="ph ph-check"></i> Salvar Lista
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal de Solicitação de Novo Produto -->
+    <div id="modalSolicitarProduto" class="modal">
+        <div class="modal-content" style="max-width: 450px;">
+            <span class="modal-close" onclick="fecharModalSolicitar()">&times;</span>
+            <h2 style="color: var(--roxo-principal); margin-bottom: 15px;"><i class="ph ph-package"></i> Solicitar Cadastro</h2>
+            <p style="font-size: 13px; color: var(--texto-cinza); margin-bottom: 15px;">
+                Não achou no catálogo? Cadastre aqui e o administrador irá aprovar.
+            </p>
+            
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Código de Barras (Opcional):</label>
+                    <div style="display: flex; gap: 10px;">
+                        <input type="text" id="solicitacaoCodigo" placeholder="Ex: 7891234567890" class="input-customizado">
+                        <button onclick="buscarNaAPIExterna()" class="btn-secundario" style="white-space: nowrap;">
+                            <i class="ph ph-globe-magnifying-glass"></i> Buscar Online
+                        </button>
+                    </div>
+                    <small id="statusBuscaExterna" style="color: var(--roxo-principal); display: none;">Buscando na internet...</small>
+                </div>
+    
+                <!-- Dados do Produto Pai -->
+                <div class="form-group">
+                    <label>Nome do Produto *:</label>
+                    <input type="text" id="solicitacaoNome" placeholder="Ex: Achocolatado em Pó" class="input-customizado">
+                </div>
+    
+                <!-- Dados da Variação Filha -->
+                <div class="form-group">
+                    <label>Marca / Descrição da Variação:</label>
+                    <input type="text" id="solicitacaoVarDescricao" placeholder="Ex: Toddy Original" class="input-customizado">
+                </div>
+    
+                <div style="display: flex; gap: 10px;">
+                    <div class="form-group" style="flex: 1;">
+                        <label>Peso/Volume:</label>
+                        <input type="number" id="solicitacaoVarPeso" placeholder="Ex: 750" class="input-customizado" step="0.01">
+                    </div>
+                    <div class="form-group" style="flex: 1;">
+                        <label>Unidade:</label>
+                        <input type="text" id="solicitacaoVarUnidade" placeholder="Ex: g, kg, ml" class="input-customizado">
+                    </div>
+                </div>
+    
+                <button onclick="enviarSolicitacaoAdmin()" class="btn-customizado" style="width: 100%; margin-top: 10px;">
+                    <i class="ph ph-paper-plane-right"></i> Enviar para Aprovação
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal de Variações -->
+    <div id="modalVariacoes" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="fecharModalVariacoes()">&times;</span>
+            <h2 style="color: var(--roxo-principal); margin-bottom: 15px;">Escolha a versão</h2>
+            <div id="listaVariacoes" class="modal-body" style="display: flex; flex-direction: column; gap: 10px;">
+                <!-- JS injetará os botões aqui -->
+            </div>
+            <hr style="margin: 15px 0; border: 0; border-top: 1px solid var(--borda);">
+            <button onclick="abrirModalNovaVariacaoDeDentro()" class="btn-secundario" style="width: 100%; border: 1px dashed var(--roxo-principal);">
+                <i class="ph ph-plus-circle"></i> Cadastrar Nova Variação
+            </button>
+        </div>
+    </div>
+    
+    <!-- Modal Nova Variação -->
+    <div id="modalNovaVariacao" class="modal">
+        <div class="modal-content" style="max-width: 400px;">
+            <span class="modal-close" onclick="fecharModalNovaVariacao()">&times;</span>
+            <h2 style="color: var(--roxo-principal);"><i class="ph ph-plus-circle"></i> Cadastrar Variação</h2>
+            <input type="hidden" id="hiddenProdutoId">
+            <div class="modal-body" style="display: flex; flex-direction: column; gap: 10px;">
+                <input type="text" id="varDescricao" placeholder="Descrição (ex: Embalagem Econômica)" class="input-customizado">
+                <input type="number" id="varPeso" placeholder="Peso (ex: 500)" class="input-customizado">
+                <input type="text" id="varUnidade" placeholder="Unidade (ex: g, kg, ml)" class="input-customizado">
+                <input type="text" id="varCodigo" placeholder="Código de Barras" class="input-customizado">
+                <button onclick="enviarNovaVariacao()" class="btn-customizado" style="width: 100%;">Salvar Variação</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal de Check-in -->
+    <div id="modalCheckin" class="modal">
+        <div class="modal-content" style="max-width: 400px;">
+            <span class="modal-close" onclick="fecharModalCheckin()">&times;</span>
+            <h2 style="color: var(--roxo-principal); margin-bottom: 15px;"><i class="ph ph-storefront"></i> Onde você está?</h2>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Selecione o Mercado:</label>
+                    <select id="seletor-mercado-checkin" class="input-customizado">
+                        <option value="">Carregando mercados...</option>
+                    </select>
+                </div>
+                <button onclick="iniciarModoCompras()" class="btn-customizado" style="width: 100%; margin-top: 15px; background-color: #4CAF50;">
+                    <i class="ph ph-play"></i> Começar a Riscar a Lista
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="javascripts/config.js"></script>
+    <script src="javascripts/script-listas.js"></script>
+    <script src="https://unpkg.com/html5-qrcode"></script>
+    <script>
+        function fecharModalVariacoes() {
+            document.getElementById('modalVariacoes').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

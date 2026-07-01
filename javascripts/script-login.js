@@ -25,13 +25,23 @@ document.getElementById('meu-form-login').addEventListener('submit', function(ev
         body: JSON.stringify(dadosLogin)
     })
     .then(async (resposta) => {
-        const mensagem = await resposta.text();
-        
         if (resposta.ok) { 
-            localStorage.setItem('usuarioLogado', email);
-            window.location.href = "tela-principal.html";
+            const dados = await resposta.json();
+            
+            // salva o token, o email e o papel no LocalStorage
+            localStorage.setItem('token', dados.token);
+            localStorage.setItem('usuarioLogado', dados.email);
+            localStorage.setItem('papelUsuario', dados.papel);
+            localStorage.setItem('usuarioId', dados.id);
+
+            if (dados.papel === 'ADMINISTRADOR') {
+                window.location.href = "admin-produtos.html";
+            } else {
+                window.location.href = "tela-principal.html";
+            }
         } else {
-            alert("Erro: " + mensagem);
+            const erroMensagem = await resposta.text();
+            alert("Erro: " + erroMensagem);
         }
     })
     .catch((erro) => {
